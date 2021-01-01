@@ -1,0 +1,29 @@
+{
+    "elements": [
+        { 
+            "type": "ValidationTextBox", 
+            "name": "IPAddress", 
+            "caption": "Host" 
+        },
+        {
+            "name": "Port",
+            "type": "NumberSpinner",
+            "caption": "Port",
+            "minimum": 49152,
+            "maximum": 65535
+        }
+    ],
+    "actions": [
+        {
+            "name": "Text",
+            "type": "ValidationTextBox",
+            "caption": "Text"
+        },
+        {
+            "type": "Button",
+            "caption": "Send",
+            "onClick": "WUTEA_Send($id, $Text);"
+        }
+    ],
+    "status": []
+}
