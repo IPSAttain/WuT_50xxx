@@ -18,6 +18,7 @@ Beschreibung des Moduls.
 ### 2. Vorraussetzungen
 
 - IP-Symcon ab Version 5.3
+- Den W&T im Modus "TCP-Server Mode (Standard Mode)" verwenden.
 
 ### 3. Software-Installation
 
@@ -33,12 +34,12 @@ __Konfigurationsseite__:
 
 Name     | Beschreibung
 -------- | ------------------
-         |
-         |
+Port     | Port für Client Socket
+Ip Adresse | IP Adresse für Client Socket
 
 ### 5. Statusvariablen und Profile
 
-Die Statusvariablen/Kategorien werden automatisch angelegt. Das Löschen einzelner kann zu Fehlfunktionen führen.
+Jeweils 12 Variablen für Ein und Ausgänge werden automatisch angelegt.
 
 #### Statusvariablen
 
@@ -51,7 +52,7 @@ Name   | Typ     | Beschreibung
 
 Name   | Typ
 ------ | -------
-       |
+~Switch | Bool
        |
 
 ### 6. WebFront
@@ -60,8 +61,4 @@ Die Funktionalität, die das Modul im WebFront bietet.
 
 ### 7. PHP-Befehlsreferenz
 
-`boolean WUTEA_BeispielFunktion(integer $InstanzID);`
-Erklärung der Funktion.
-
-Beispiel:
-`WUTEA_BeispielFunktion(12345);`
+keine

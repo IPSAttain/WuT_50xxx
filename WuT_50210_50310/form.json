@@ -15,14 +15,9 @@
     ],
     "actions": [
         {
-            "name": "Text",
-            "type": "ValidationTextBox",
-            "caption": "Text"
-        },
-        {
             "type": "Button",
-            "caption": "Send",
-            "onClick": "WUTEA_Send($id, $Text);"
+            "caption": "Initialisierung Senden",
+            "onClick": "WUTEA_Initialize($id);"
         }
     ],
     "status": []
