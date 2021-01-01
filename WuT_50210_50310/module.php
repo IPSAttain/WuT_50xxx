@@ -109,7 +109,7 @@
 			$this->Send($Payload);
 		}
 
-		protected function Initialize()
+		public function Initialize()
 		{
 			$Payload = "\x00\x00\x00\x00\x08\x00\x0c\x00\x01\x00";
 			$Int = 0;
