@@ -61,4 +61,7 @@ Die Funktionalität, die das Modul im WebFront bietet.
 
 ### 7. PHP-Befehlsreferenz
 
-keine
+Name   | Typ
+------ | -------
+WuT_Initialize | Sendet alle AusgangsVariablen zum E/A Device. Es werden Änderungen an den Eingängen abonniert.
+       |

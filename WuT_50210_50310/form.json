@@ -16,8 +16,8 @@
     "actions": [
         {
             "type": "Button",
-            "caption": "Initialisierung Senden",
-            "onClick": "WUTEA_Initialize($id);"
+            "caption": "Send initialization",
+            "onClick": "WuT_Initialize($id);"
         }
     ],
     "status": []

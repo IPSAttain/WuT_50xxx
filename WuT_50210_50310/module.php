@@ -1,5 +1,5 @@
 <?php
-	class WuT_50xxx extends IPSModule {
+	class WuT50xxx extends IPSModule {
 
 		public function Create()
 		{
@@ -8,7 +8,7 @@
 
 			$this->RegisterPropertyString("IPAddress", "192.168.1.1");
 			$this->RegisterPropertyInteger("Port", 49153);
-			$this->RegisterTimer("TimeOut", 600000, "WUTEA_ActivateInputs($this->InstanceID);");
+			$this->RegisterTimer("TimeOut", 600000, "WuT_Initialize($this->InstanceID);");
 			$this->RegisterMessage(0, IPS_KERNELSTARTED);
 			for ($i=0; $i<=11; $i++) {
 				$Ident = "WuT_Output_" . str_pad($i, 2, "0", STR_PAD_LEFT);
@@ -111,30 +111,25 @@
 
 		public function Initialize()
 		{
-			$Payload = "\x00\x00\x00\x00\x08\x00\x0c\x00\x01\x00";
-			$Int = 0;
-			for ($i=0; $i<=7; $i++) {
-				$Ident = "WuT_Output_" . str_pad($i, 2, "0", STR_PAD_LEFT);
-				$Bit = $this->GetValue($Ident);
-				if ($Bit) $Int += pow(2,$i);
-			}
-			$Payload .= chr($Int);
-			$Int = 0;
-			for ($i=8; $i<=11; $i++) {
-				$Ident = "WuT_Output_" . str_pad($i, 2, "0", STR_PAD_LEFT);
-				$Bit = $this->GetValue($Ident);
-				if ($Bit) $Int += pow(2,$i-8);
-			}
-			$Payload .= chr($Int);
-			$this->Send($Payload);
-			$this->ActivateInputs();
-		}
-
-		public function ActivateInputs()
-		{
-			$Payload = "\x00\x00\x00\x00\x10\x00\x0c\x00\xff\x0f"; // \xff\xf0 = automatische Benachrichtigung bei allen 12 Eingängen aktiv
-			$Payload .= "\xb8\x0b"; //xff = alle 300 sekunden zyklisches Statusupdate (3000 *100 ms)
 			if ($this->HasActiveParent()){
+				$Payload = "\x00\x00\x00\x00\x08\x00\x0c\x00\x01\x00";
+				$Int = 0;
+				for ($i=0; $i<=7; $i++) {
+					$Ident = "WuT_Output_" . str_pad($i, 2, "0", STR_PAD_LEFT);
+					$Bit = $this->GetValue($Ident);
+					if ($Bit) $Int += pow(2,$i);
+				}
+				$Payload .= chr($Int);
+				$Int = 0;
+				for ($i=8; $i<=11; $i++) {
+					$Ident = "WuT_Output_" . str_pad($i, 2, "0", STR_PAD_LEFT);
+					$Bit = $this->GetValue($Ident);
+					if ($Bit) $Int += pow(2,$i-8);
+				}
+				$Payload .= chr($Int);
+				$this->Send($Payload);
+				$Payload = "\x00\x00\x00\x00\x10\x00\x0c\x00\xff\x0f"; // \xff\xf0 = automatische Benachrichtigung bei allen 12 Eingängen aktiv
+				$Payload .= "\xb8\x0b"; //xff = alle 300 sekunden zyklisches Statusupdate (3000 *100 ms)
 				$this->Send($Payload);
 			}
 			else
@@ -143,7 +138,7 @@
 			}
 		}
 		
-		public function Send(string $Payload)
+		protected function Send(string $Payload)
 		{
 			$this->SendDebug("Send", $Payload , 1);
 			$Payload = utf8_encode($Payload);
