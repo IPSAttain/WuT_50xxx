@@ -13,12 +13,15 @@ Beschreibung des Moduls.
 
 ### 1. Funktionsumfang
 
-*
+* 
 
 ### 2. Vorraussetzungen
 
-- IP-Symcon ab Version 5.3
-- Den W&T im Modus "TCP-Server Mode (Standard Mode)" verwenden.
+* IP-Symcon ab Version 5.0
+* Den W&T im Modus "TCP-Server Mode (Standard Mode)" verwenden.
+* Standardmäßig befindet sich der E/A Com-Server-Port im Mode TCP-Server. 
+Es sind keine weiteren Einstellungen notwendig. Von jeder TCP/IP-Station im Netz kann nun eine Verbindung zum ComServer-Port aufgebaut werden. 
+Es kann immer nur eine Verbindung gleichzeitig bestehen.
 
 ### 3. Software-Installation
 
@@ -45,8 +48,8 @@ Jeweils 12 Variablen für Ein und Ausgänge werden automatisch angelegt.
 
 Name   | Typ     | Beschreibung
 ------ | ------- | ------------
-       |         |
-       |         |
+Output | bool    | Darstellung der Ausgangsbits
+Input  | bool    | Darstellung des Eingangsbits
 
 #### Profile
 
@@ -63,5 +66,5 @@ Die Funktionalität, die das Modul im WebFront bietet.
 
 Name   | Typ
 ------ | -------
-WuT_Initialize | Sendet alle AusgangsVariablen zum E/A Device. Es werden Änderungen an den Eingängen abonniert.
-       |
+WuT_Initialize | Sendet den Status aller Ausgangs-Variablen zum E/A Device. Es werden Änderungen an den Eingängen abonniert.
+RequestAction | Für Ausgangs Status Variablen. Hiermit kann die Änderungen eines Ausgangs erwirkt werden. 
